@@ -10,6 +10,7 @@ class App extends React.Component {
         data: null,
     };
 
+
     sortList = (sortType) => {
         let listToSort = [...this.state.data];
 
