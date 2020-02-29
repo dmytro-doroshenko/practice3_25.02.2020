@@ -8,8 +8,8 @@ class App extends React.Component {
 
     state = {
         data: null,
+        counter: 0,
     };
-
 
     sortList = (sortType) => {
         let listToSort = [...this.state.data];
@@ -25,6 +25,9 @@ class App extends React.Component {
 
     deleteUser = (userID) => {
         let users = [...this.state.data];
+        let counted = this.state.counter;
+        let user = this.state.data.find(u => u.id === userID);
+        if (user.counted) {this.setState({counter: --counted})}
         let filtered = users.filter(user => (user.id !== userID));
         this.setState({data: filtered});
     };
@@ -33,18 +36,25 @@ class App extends React.Component {
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(r => r.json())
             .then(value => {
-                console.log(value)
                 this.setState({data: value})
             })
     };
 
+    countUser = (userID) => {
+        let user = this.state.data.find(u => u.id === userID);
+        let {counter} = this.state;
+        user.counted = !user.counted;
+        user.counted ? counter++ : counter--;
+        this.setState( {counter: counter} )
+    };
+
     render () {
-        const {data} = this.state;
+        const {data, counter} = this.state;
         return (
             <div className="App">
-                <Header myFunc = {this.sortList}/>
+                <Header myFunc = {this.sortList} usersAdded={counter}/>
                 {data
-                    ? data.map(item => {return <Card user={item} key={item.id} myFunc={this.deleteUser}/>})
+                    ? data.map(item => {return <Card user={item} key={item.id} myFunc={this.deleteUser} myFunc2={this.countUser}/>})
                     : 'Loading...'}
             </div>
         );

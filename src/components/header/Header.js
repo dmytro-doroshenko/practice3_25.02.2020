@@ -1,6 +1,7 @@
 import React from 'react';
+import Counter from "../counter/Counter";
 
-function Header({myFunc}) {
+function Header({myFunc, usersAdded}) {
 
     const sortByName = () => {
         myFunc('sortByName');
@@ -11,10 +12,11 @@ function Header({myFunc}) {
     };
 
     return (
-        <nav className="navbar navbar-dark bg-primary" style={{justifyContent: "flex-start"}}>
+        <nav className="navbar navbar-dark bg-primary" style={{justifyContent: "space-around"}}>
             <h1>Header</h1>
             <a href="#" className="btn btn-primary" onClick={sortByName}>Sort by Name</a>
             <a href="#" className="btn btn-primary" onClick={sortByCity}>Sort by City</a>
+            <Counter counted = {usersAdded}/>
         </nav>
     );
 }
