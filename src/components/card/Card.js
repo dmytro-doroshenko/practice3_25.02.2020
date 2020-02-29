@@ -11,10 +11,7 @@ function Card({user, myFunc, myFunc2}) {
     };
 
     const btnName = (counted) => {
-        let name = 'Add';
-        if (counted) {name = 'Remove'}
-
-        return name;
+        return (counted ? 'Remove' : 'Add')
     }
 
     return (
