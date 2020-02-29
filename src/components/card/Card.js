@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Card({user, myFunc, myFunc2}) {
+function Card({user, myFunc, myFunc2, myFunc3}) {
 
     const removeUser = (id) => {
         myFunc(id);
@@ -10,8 +10,12 @@ function Card({user, myFunc, myFunc2}) {
         myFunc2(id);
     };
 
+    // const btnName = (counted) => {
+    //     return (counted ? 'Remove' : 'Add')
+    // }
+
     const btnName = (counted) => {
-        return (counted ? 'Remove' : 'Add')
+        return myFunc3(counted);
     }
 
     return (

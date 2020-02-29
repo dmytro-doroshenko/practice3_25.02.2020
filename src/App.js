@@ -48,13 +48,17 @@ class App extends React.Component {
         this.setState( {counter: counter} )
     };
 
+    btnName = (counted) => {
+        return (counted ? 'Remove' : 'Add')
+    };
+
     render () {
         const {data, counter} = this.state;
         return (
             <div className="App">
                 <Header myFunc = {this.sortList} usersAdded={counter}/>
                 {data
-                    ? data.map(item => {return <Card user={item} key={item.id} myFunc={this.deleteUser} myFunc2={this.countUser}/>})
+                    ? data.map(item => {return <Card user={item} key={item.id} myFunc={this.deleteUser} myFunc2={this.countUser} myFunc3={this.btnName}/>})
                     : 'Loading...'}
             </div>
         );
