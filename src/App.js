@@ -10,15 +10,6 @@ class App extends React.Component {
     state = {
         data: null,
         counter: 0,
-
-        newUsrData: {
-            id: undefined,
-            name: undefined,
-            username: undefined,
-            address: {
-                city: undefined,
-            },
-        },
     };
 
     sortList = (sortType) => {
@@ -78,12 +69,6 @@ class App extends React.Component {
         this.setState({data: users})
     };
 
-    updateNewUserInfo = (fieldName, value) => {
-        let userInfo = this.state.newUsrData;
-        fieldName === 'city' ? userInfo.address[fieldName]=value : userInfo[fieldName]=value;
-        this.setState({newUsrData: userInfo})
-
-    };
 
     idValidation = (id) => {
         let user = this.state.data.find(u => u.id === id);
@@ -92,14 +77,14 @@ class App extends React.Component {
 
 
     render () {
-        const {data, counter, newUsrData} = this.state;
+        const {data, counter} = this.state;
         return (
             <div className="App">
                 <Header myFunc = {this.sortList} usersAdded={counter}/>
                 {data
                     ? data.map(item => {return <Card user={item} key={item.id} myFunc={this.deleteUser} myFunc2={this.countUser} myFunc3={this.btnName} myFunc4={this.hideOrShowUserInfo} myFunc5={this.hideCard}/>})
                     : 'Loading...'}
-                {data && <CreateUserCard newUserData={newUsrData} myFunc={this.createNewUser} myFunc2={this.updateNewUserInfo} myFunc3={this.idValidation}/>}
+                {data && <CreateUserCard myFunc={this.createNewUser} myFunc2={this.idValidation}/>}
             </div>
         );
     };
