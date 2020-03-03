@@ -3,6 +3,10 @@ import Counter from "../counter/Counter";
 
 function Header({myFunc, usersAdded}) {
 
+    const sortByID = () => {
+        myFunc('sortByID');
+    };
+
     const sortByName = () => {
         myFunc('sortByName');
     };
@@ -14,6 +18,7 @@ function Header({myFunc, usersAdded}) {
     return (
         <nav className="navbar navbar-dark bg-primary" style={{justifyContent: "space-around"}}>
             <h1>Header</h1>
+            <a href="#" className="btn btn-primary" onClick={sortByID}>Sort by ID</a>
             <a href="#" className="btn btn-primary" onClick={sortByName}>Sort by Name</a>
             <a href="#" className="btn btn-primary" onClick={sortByCity}>Sort by City</a>
             <Counter counted = {usersAdded}/>

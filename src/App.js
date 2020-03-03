@@ -15,7 +15,9 @@ class App extends React.Component {
     sortList = (sortType) => {
         let listToSort = [...this.state.data];
 
-        if (sortType === 'sortByName') {
+        if (sortType === 'sortByID') {
+            listToSort.sort((a, b) => {return ((a.id > b.id)? 1: -1)});
+        } else if (sortType === 'sortByName') {
             listToSort.sort((a, b) => {return ((a.name.toLowerCase() === b.name.toLowerCase()) ? 0 : ((a.name.toLowerCase() > b.name.toLowerCase())? 1: -1))});
         } else if (sortType === 'sortByCity') {
             listToSort.sort((a, b) => {return ((a.address.city.toLowerCase() === b.address.city.toLowerCase()) ? 0 : ((a.address.city.toLowerCase() > b.address.city.toLowerCase())? 1: -1))});
