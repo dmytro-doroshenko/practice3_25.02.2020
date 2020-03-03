@@ -21,7 +21,7 @@ function CreateUserCard ({myFunc, myFunc2}) {
             event.preventDefault();
         }
         else {
-            alert('ID must be unique!')
+            alert('ID must be unique!');
             event.preventDefault();
             return false;
         }
